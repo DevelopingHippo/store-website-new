@@ -6,7 +6,7 @@ session_start();
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Store</title>
-    <link rel="stylesheet" type="text/css" href="storeStyle.css" />
+    <link rel="stylesheet" type="text/css" href="../css/storeStyle.css" />
 </head>
 <body>
 

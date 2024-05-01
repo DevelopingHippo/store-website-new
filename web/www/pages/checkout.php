@@ -17,7 +17,7 @@ if(empty($_SESSION["uid"]))
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Checkout</title>
-    <link rel="stylesheet" type="text/css" href="checkoutStyle.css" />
+    <link rel="stylesheet" type="text/css" href="../css/checkout.css" />
 </head>
 <body>
 <?php
@@ -50,7 +50,7 @@ else
     $result = queryDatabase($sql);
     $row = $result->fetch_assoc();
     echo '<br><br>Name: '.$row["firstname"]. " " . $row["lastname"] . "<br>Email: " . $row["email"] . "<br>Shipping Address: Fake Address 1234, Houghton, Michigan, United States<br>Payment Method: **** **** **** 1234";
-    echo '<br><a href="receipt.php">Checkout</a>';
+    echo '<br><a href="../store/receipt.php">Checkout</a>';
 }
 ?>
 

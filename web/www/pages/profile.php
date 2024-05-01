@@ -17,7 +17,7 @@ if(empty($_SESSION["uid"]) || ($_SESSION["type"] != "customer"))
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Customer</title>
-    <link rel="stylesheet" type="text/css" href="customerStyle.css" />
+    <link rel="stylesheet" type="text/css" href="../customer/customerStyle.css" />
 </head>
 <body>
 

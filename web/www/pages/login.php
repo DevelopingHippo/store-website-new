@@ -10,7 +10,7 @@ if (!isset($_SESSION["type"]))
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="loginStyle.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/login.css"/>
 </head>
 <body>
 <?php

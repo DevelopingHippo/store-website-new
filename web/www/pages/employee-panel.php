@@ -16,7 +16,7 @@ if($_SESSION["type"] != 'employee')
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Employee</title>
-    <link rel="stylesheet" type="text/css" href="employeeStyle.css" />
+    <link rel="stylesheet" type="text/css" href="../employee/employeeStyle.css" />
 </head>
 <body>
 <?php
@@ -36,7 +36,7 @@ if(!isset($_SESSION))
 }
 if($_SESSION["admin"] == "true")
 {
-    echo '<a href="../admin/panel.php">Admin Panel</a>';
+    echo '<a href="../pages/admin-employee-panel.php">Admin Panel</a>';
 }
 echo "</h2>";
 ?>

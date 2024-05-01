@@ -17,7 +17,7 @@ if($_SESSION["admin"] != "true")
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin</title>
-    <link rel="stylesheet" type="text/css" href="adminStyle.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/adminStyle.css"/>
 </head>
 <body>
 

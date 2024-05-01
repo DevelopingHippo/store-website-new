@@ -10,7 +10,7 @@ if (!isset($_SESSION["type"]))
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Register</title>
-    <link rel="stylesheet" type="text/css" href="registerStyle.css" />
+    <link rel="stylesheet" type="text/css" href="../css/register.css" />
 </head>
 <body>
 <?php

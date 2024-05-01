@@ -10,7 +10,7 @@ if (!isset($_SESSION["type"]))
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Delete Account</title>
-    <link rel="stylesheet" type="text/css" href="customerStyle.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/customerStyle.css" />
 </head>
 <body>
 

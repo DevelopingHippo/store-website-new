@@ -1,14 +1,36 @@
 <?php
-require_once "websiteFunctions.php";
+$db_host = 'db_store';
+$db_user = 'web';
+$db_pass = 'P@ssw0rd!';
+$db_database = 'store';
 
-# Return results of SQL query
-function queryDatabase($sql)
+
+function queryDatabase($sql): false|array|null
 {
-    $conn = mysqli_connect("db_store","web","P@ssw0rd!", "store");
+    global $db_host, $db_user, $db_pass, $db_database;
+    $conn = mysqli_connect($db_host, $db_user, $db_pass, $db_database);
+    $result = $conn->query($sql);
+    $conn->close();
+    return $result->fetch_assoc();
+}
+function insertDatabase($sql): mysqli_result|bool
+{
+    global $db_host, $db_user, $db_pass, $db_database;
+    $conn = mysqli_connect($db_host, $db_user, $db_pass, $db_database);
     $result = $conn->query($sql);
     $conn->close();
     return $result;
 }
+
+function queryDatabaseMultiple($sql): mysqli_result|bool
+{
+    global $db_host, $db_user, $db_pass, $db_database;
+    $conn = mysqli_connect($db_host, $db_user, $db_pass, $db_database);
+    $result = $conn->query($sql);
+    $conn->close();
+    return $result;
+}
+
 
 # Sanitize input before being added to SQL query
 function inputSanitize($input): string
@@ -17,7 +39,7 @@ function inputSanitize($input): string
     return mysqli_real_escape_string($conn, $input);
 }
 
-function addNewProduct($productName, $serialNum)
+function addNewProduct($productName, $serialNum): void
 {
 
     $productTypeSearch = "SELECT productType FROM store WHERE productName='".$productName."';";
@@ -28,7 +50,7 @@ function addNewProduct($productName, $serialNum)
     $productInfoSQL = "SELECT * FROM ".$productType." WHERE productName='".$productName."';";
     $productInfoResult = queryDatabase($productInfoSQL);
     $productInfoRow = $productInfoResult->fetch_assoc();
-
+    $addProductSQL = "";
     if($productType == "cpu")
     {
         $addProductSQL = "INSERT INTO ".$productType." VALUES ('".$productName."',".$serialNum.",'".$productInfoRow["manufacturer"]."', '".$productInfoRow["socket"]."', ".$productInfoRow["coreCount"].", ".$productInfoRow["coreClock"].", ".$productInfoRow["coreClockBoost"].");";

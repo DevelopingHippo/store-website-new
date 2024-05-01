@@ -15,7 +15,7 @@ if(empty($_SESSION["uid"]))
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Receipt</title>
-    <link rel="stylesheet" type="text/css" href="receiptStyle.css" />
+    <link rel="stylesheet" type="text/css" href="../css/receipt.css" />
 </head>
 <body>
 
@@ -169,7 +169,7 @@ else
     echo "NO ITEMS IN CART TO CHECKOUT";
 }
 echo '<br><br>';
-echo '<a href="store.php">Back To Store</a>';
+echo '<a href="../store/store.php">Back To Store</a>';
 ?>
 <div id="footer">
     | Ethan B. | Thad S. | Brad S. | Andrew M. | Ewan B. | SAT3210 Project Site |

@@ -10,7 +10,7 @@ if (!isset($_SESSION["type"]))
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Cart</title>
-    <link rel="stylesheet" type="text/css" href="cartStyle.css" />
+    <link rel="stylesheet" type="text/css" href="../css/cart.css" />
 </head>
 <body>
 <?php
@@ -37,7 +37,7 @@ if ($result->num_rows > 0)
     $result = queryDatabase($sql);
     $row = $result->fetch_assoc();
     echo "<tr><td><b>Total:</b></td><td><u>$" . $row["total"] . "</u></td>";
-    echo '<td><a href="checkout.php"><b>Checkout</b></a></td></tr>';
+    echo '<td><a href="../store/checkout.php"><b>Checkout</b></a></td></tr>';
     echo '</table>';
     echo '</div>';
 }

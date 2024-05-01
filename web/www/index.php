@@ -1,30 +1,26 @@
 <?php
 session_start();
-if (!isset($_SESSION["type"]))
-{
-    $_SESSION["type"] = "";
-}
+require_once "./php/websiteFunctions.php";
+require_once "./php/databaseFunctions.php";
 ?>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/site-global.css"/>
+    <link rel="stylesheet" type="text/css" href="index.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
     <title>Welcome</title>
-    <link rel="stylesheet" type="text/css" href="indexStyle.css" />
 </head>
-
 <body>
-
 <?php
-# Load Dependencies and print Top Nav Bar
-require_once "php/websiteFunctions.php";
-printTopMenu($_SESSION["type"], "Home");
+build_container();
 ?>
-
-<div id="main">
+<main class="main-container">
     <h2>Store Info</h2>
-    <div id="mainBody">
+    <div class="main-body">
         <p>This site is a PC Parts Store that has:</p>
         <p><b>Store:</b> Product Searching, Shopping Cart, Checkout, Receipts, and Purchase History</p>
         <p><b>Customer:</b> Customer Registration, Customer Login, Account Updating & Deleting</p>
@@ -33,11 +29,7 @@ printTopMenu($_SESSION["type"], "Home");
         <p>Product(Search, Update, Low Stock Alerts, Restock)</p>
         <p>Order(Search, Update, Refund)</p>
     </div>
-</div>
-
-<div id="footer">
-   | Welcome to Generic Computer Parts Store |
-</div>
-
+</main>
+<script src="/js/scripts/web-functions.js"></script>
 </body>
 </html>

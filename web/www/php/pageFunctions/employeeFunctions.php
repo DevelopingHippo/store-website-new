@@ -16,7 +16,7 @@ function printCustomerSearch()
     # Print Customer Search POST Form
     echo "<h3>Search</h3>";
     echo "<div id='tdBorder'><table class='center'>";
-    echo "<form action='/employee/panel.php' method='POST'>";
+    echo "<form action='/employee/admin-employee-panel.php' method='POST'>";
     echo '<tr><td>*Username:</td><td><input type="text" name="usernameSearch"></td></tr>';
     echo "</table></div>";
     echo '<tr><td></td><td><input type="submit" name="action" value="Search Customer"></td></tr>';
@@ -68,7 +68,7 @@ function printCustomerCreate()
     # Print out Customer Create POST Form
     echo "<h3>Create</h3>";
     echo "<div id='tdBorder'><table class='center'>";
-    echo "<form action='/employee/panel.php' method='POST'>";
+    echo "<form action='/employee/admin-employee-panel.php' method='POST'>";
     echo '<tr><td>*Username:</td><td><input type="text" name="usernameCreate"></td></tr>';
     echo '<tr><td>*First Name:</td><td><input type="text" name="firstnameCreate"></td></tr>';
     echo '<tr><td>*Last Name:</td><td><input type="text" name="lastnameCreate"></td></tr>';
@@ -150,7 +150,7 @@ function printCustomerUpdate()
     # Print out Customer Update POST Form
     echo "<h3>Update</h3>";
     echo "<div id='tdBorder'><table class='center'>";
-    echo "<form action='/employee/panel.php' method='POST'>";
+    echo "<form action='/employee/admin-employee-panel.php' method='POST'>";
     echo '<tr><td>*Username:</td><td><input type="text" name="usernameUpdate"></td></tr>';
     echo '<tr><td>New Username:</td><td><input type="text" name="newusernameUpdate"></td></tr>';
     echo '<tr><td>First Name:</td><td><input type="text" name="firstnameUpdate"></td></tr>';
@@ -264,7 +264,7 @@ function printCustomerDelete()
     # Print out Customer Delete POST Form
     echo "<h3>Delete</h3>";
     echo "<div id='tdBorder'><table class='center'>";
-    echo "<form action='/employee/panel.php' method='POST'>";
+    echo "<form action='/employee/admin-employee-panel.php' method='POST'>";
     echo '<tr><td>*Username:</td><td><input type="text" name="username1Delete"></td></tr>';
     echo '<tr><td>*Confirm Username:</td><td><input type="text" name="username2Delete"></td></tr>';
     echo "</table></div>";
@@ -337,7 +337,7 @@ function printProductRestock()
     # Print Restock Product POST Form
     echo "<h3>Restock</h3>";
     echo "<div id='tdBorder'><table class='center'>";
-    echo "<form action='/employee/panel.php' method='POST'>";
+    echo "<form action='/employee/admin-employee-panel.php' method='POST'>";
     echo '<tr><td>*Product Name:</td><td><input type="text" name="productNameRestock"></td></tr>';
     echo '<tr><td>*Amount:</td><td><input type="number" name="amountRestock" min="1" max="25"></td></tr>';
     echo "</table></div>";
@@ -409,7 +409,7 @@ function printProductSearch()
     # Print Product Search POST Form
     echo "<h3>Search</h3>";
     echo "<div id='tdBorder'><table class='center'>";
-    echo "<form action='/employee/panel.php' method='POST'>";
+    echo "<form action='/employee/admin-employee-panel.php' method='POST'>";
     echo '<tr><td>*Product Name:</td><td><input type="text" name="searchProductName"></td></tr>';
     echo "</table></div>";
     echo '<tr><td></td><td><input type="submit" name="action" value="Search Product"></td></tr>';
@@ -522,7 +522,7 @@ function printProductUpdate()
     if($_POST["action"] != "Step 1" || $status == "productNotFound")
     {
         echo "<div id='tdBorder'><table class='center'>";
-        echo "<form action='/employee/panel.php' method='POST'>";
+        echo "<form action='/employee/admin-employee-panel.php' method='POST'>";
         echo '<tr><td>*Product Name:</td><td><input type="text" name="updateProductName"></td></tr>';
         echo "</table></div>";
         echo '<tr><td></td><td><input type="submit" name="action" value="Step 1"></td></tr>';
@@ -587,7 +587,7 @@ function printOrderSearch()
     # Print Order Search POST Form
     echo "<h3>Search</h3>";
     echo "<div id='tdBorder'><table class='center'>";
-    echo "<form action='/employee/panel.php' method='POST'>";
+    echo "<form action='/employee/admin-employee-panel.php' method='POST'>";
     echo '<tr><td>Username:</td><td><input type="text" name="usernameOrderSearch"></td></tr>';
     echo '<tr><td>Receipt ID:</td><td><input type="number" name="receiptIDOrderSearch" min="0"></td></tr>';
     echo '<tr><td>Serial # :</td><td><input type="number" name="serialNumOrderSearch" min="0"></td></tr>';
@@ -661,7 +661,7 @@ function printOrderUpdate()
                 {
                     $count = $count + 1;
                     echo "<div id='tableBorder'><table class='center'>";
-                    echo "<form action='/employee/panel.php' method='POST'>";
+                    echo "<form action='/employee/admin-employee-panel.php' method='POST'>";
                     echo "<tr><td><b>Username:</b></td><td>".$receiptRow["username"]."</td><td><input type='text' name='updateOrderUsername".$count."'></td></tr>";
                     echo "<tr><td><b>Product:</b></td><td>".$receiptRow["productName"]."</td><td><input type='text' name='updateOrderProduct".$count."'></td></tr>";
                     echo "<tr><td><b>Price:</b></td><td>$".$receiptRow["price"]."</td><td><input type='number' name='updateOrderPrice".$count."' min='0' step='0.01'></td></tr>";
@@ -755,7 +755,7 @@ function printOrderUpdate()
     if($_POST["action"] != "Find Order" || $status == "orderUpdateFail" || $status == "orderUpdateFailNoReceipt")
     {
         echo "<div id='tdBorder'><table class='center'>";
-        echo "<form action='/employee/panel.php' method='POST'>";
+        echo "<form action='/employee/admin-employee-panel.php' method='POST'>";
         echo '<tr><td>*Receipt ID:</td><td><input type="number" name="receiptIDUpdateOrder" min="1"></td></tr>';
         echo "</table></div>";
         echo '<tr><td></td><td><input type="submit" name="action" value="Find Order"></td></tr>';
@@ -823,7 +823,7 @@ function printOrderRefund()
     # Print Product Refund POST Form
     echo "<h3>Refund</h3>";
     echo "<div id='tdBorder'><table class='center'>";
-    echo "<form action='/employee/panel.php' method='POST'>";
+    echo "<form action='/employee/admin-employee-panel.php' method='POST'>";
     echo '<tr><td>*Serial # :</td><td><input type="number" name="serialNumOrderRefund" min="0"></td></tr>';
     echo "</table></div>";
     echo '<tr><td></td><td><input type="submit" name="action" value="Refund Order"></td></tr>';

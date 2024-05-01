@@ -27,7 +27,7 @@ function printAdminEmployeeSearch()
     # Print Employee Search POST Form
     echo "<h3>Search</h3>";
     echo "<div id='tdBorder'><table class='center'>";
-    echo "<form action='/admin/panel.php' method='POST'>";
+    echo "<form action='/admin/admin-employee-panel.php' method='POST'>";
     echo '<tr><td>*Username:</td><td><input type="text" name="usernameSearch"></td></tr>';
     echo "</table></div>";
     echo '<tr><td></td><td><input type="submit" name="action" value="Search Employee"></td></tr>';
@@ -90,7 +90,7 @@ function printAdminEmployeeCreate()
     # Print out Employee Create POST Form
     echo "<h3>Create</h3>";
     echo "<div id='tdBorder'><table class='center'>";
-    echo "<form action='/admin/panel.php' method='POST'>";
+    echo "<form action='/admin/admin-employee-panel.php' method='POST'>";
     echo '<tr><td>*Username:</td><td><input type="text" name="usernameCreate"></td></tr>';
     echo '<tr><td>*First Name:</td><td><input type="text" name="firstnameCreate"></td></tr>';
     echo '<tr><td>*Last Name:</td><td><input type="text" name="lastnameCreate"></td></tr>';
@@ -181,7 +181,7 @@ function printAdminEmployeeUpdate()
     # Print out Employee Update POST Form
     echo "<h3>Update</h3>";
     echo "<div id='tdBorder'><table class='center'>";
-    echo "<form action='/admin/panel.php' method='POST'>";
+    echo "<form action='/admin/admin-employee-panel.php' method='POST'>";
     echo '<tr><td>*Username:</td><td><input type="text" name="usernameUpdate"></td></tr>';
     echo '<tr><td>New Username:</td><td><input type="text" name="newusernameUpdate"></td></tr>';
     echo '<tr><td>First Name:</td><td><input type="text" name="firstnameUpdate"></td></tr>';
@@ -307,7 +307,7 @@ function printAdminEmployeeDelete()
     # Print out Employee Delete POST Form
     echo "<h3>Delete</h3>";
     echo "<div id='tdBorder'><table class='center'>";
-    echo "<form action='/admin/panel.php' method='POST'>";
+    echo "<form action='/admin/admin-employee-panel.php' method='POST'>";
     echo '<tr><td>*Username:</td><td><input type="text" name="username1Delete"></td></tr>';
     echo '<tr><td>*Confirm Username:</td><td><input type="text" name="username2Delete"></td></tr>';
     echo "</table></div>";
@@ -378,7 +378,7 @@ function printAdminSQLPrompt()
     }
 
     # Print out SQL Prompt POST Form
-    echo '<table class="center"><form action="/admin/panel.php" method="POST">';
+    echo '<table class="center"><form action="/admin/admin-employee-panel.php" method="POST">';
     echo '<tr><td><input size="50" type="text" name="sqlQuery"></td>';
     echo '<td><input type="submit" name="action" value="Query" ></td></tr>';
     echo '</table></form>';

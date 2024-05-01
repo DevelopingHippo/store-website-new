@@ -1,87 +1,93 @@
 <?php
 # Print out Site Navigation Menu
-function printTopMenu($type, $selected)
+
+
+function build_container(): void
 {
-    echo '<div id="nav">';
-    echo "\n";
-    if($selected == "Home")
-    {
-        echo '<a class="selected" href="/index.php">Home</a>';
+    echo '
+        <div class="grid-container">
+        <header class="header">
+            <div class="menu-icon" onclick="openSidebar()">
+                <span class="material-icons-outlined" id="clickableIcon">menu</span>
+            </div>
+            <div class="header-left">
+                <span class="material-icons-outlined" id="clickableIcon">search</span>
+            </div>
+            <div class="header-right">
+                <span class="material-icons-outlined" id="clickableIcon">notifications</span>
+                <span class="material-icons-outlined" id="clickableIcon">email</span>
+                <span class="material-icons-outlined" id="clickableIcon" onclick="pageRedirect(\'profile\')">account_circle</span>
+                <span class="material-symbols-outlined" id="clickableIcon" onclick="pageRedirect(\'logout\')">logout</span>
+            </div>
+        </header>
+        <aside id="sidebar">
+            <div class="sidebar-title">
+                <div class="sidebar-brand">
+                    <span class="material-symbols-outlined">eye_tracking</span> Global Solutions
+                </div>
+                <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+            </div>
+            <ul class="sidebar-list">
+                <li class="sidebar-list-item" onclick="pageRedirect(\'store\')">
+                    <span class="material-icons-outlined">dashboard</span> Store
+                </li>';
+    if(isset($_SESSION['role'])){
+        echo '<li class="sidebar-list-item" onclick="pageRedirect(\'profile\')">
+                    <span class="material-icons-outlined">fact_check</span> Profile
+                </li>';
+        echo '<li class="sidebar-list-item" onclick="pageRedirect(\'cart\')">
+                    <span class="material-icons-outlined">fact_check</span> Cart
+                </li>';
     }
-    else
-    {
-        echo '<a href="/index.php">Home</a>';
+    else {
+        echo '<li class="sidebar-list-item" onclick="pageRedirect(\'login\')">
+                    <span class="material-icons-outlined">fact_check</span> Account
+                </li>';
     }
-    echo "\n";
-    if($selected == "Store")
-    {
-        echo '<a class="selected" href="/store/store.php">Store</a>';
+    if(isset($_SESSION['role'])) {
+        if($_SESSION['role'] == 'employee' || $_SESSION['role'] == 'admin') {
+            echo '<li class="sidebar-list-item" onclick="pageRedirect(\'employee-panel\')">
+                            <span class="material-icons-outlined">groups</span> Employee
+                  </li>';
+        }
+        if($_SESSION['role'] == 'admin'){
+            echo '<li class="sidebar-list-item" onclick="pageRedirect(\'admin-panel\')">
+                            <span class="material-icons-outlined">groups</span> Admin
+                        </li>';
+        }
     }
-    else
-    {
-        echo '<a href="/store/store.php">Store</a>';
-    }
+    echo '</ul>
+        </aside>';
+}
 
-    if(!empty($type))
-    {
-        echo "\n";
-        if($selected == "Cart")
-        {
-            echo '<a class="selected" href="/store/cart.php">&#128722</a>';
-        }
-        else
-        {
-            echo '<a href="/store/cart.php">&#128722</a>';
-        }
+function checkAdminAuth(): void
+{
+    if(!isset($_SESSION['role']) || $_SESSION['role'] != 'admin'){
+        header("location: /php/auth/logout.php");
+        exit();
     }
+}
 
-    echo "\n";
-    if($type == "customer")
-    {
-        if($selected == "Profile")
-        {
-            echo '<a class="selected" href="/customer/profile.php">Profile</a>';
-        }
-        else
-        {
-            echo '<a href="/customer/profile.php">Profile</a>';
-        }
+function checkCustAuth(): void
+{
+    if(!isset($_SESSION["role"])){
+        header("location: /php/auth/logout.php");
+        exit();
     }
-    else if($type == "employee")
-    {
-        if($selected == "Profile")
-        {
-            echo '<a class="selected" href="/employee/panel.php">Employee</a>';
-        }
-        else
-        {
-            echo '<a href="/employee/panel.php">Employee</a>';
-        }
+}
+
+function checkEmployeeAuth(): void
+{
+    if(!isset($_SESSION['role']) || ($_SESSION['role'] != 'employee' || $_SESSION['role'] != 'admin')){
+        header('location: /php/auth/logout.php');
+        exit();
     }
-    else
-    {
-        if($selected == "Login")
-        {
-            echo '<a class="selected" href="/auth/login.php">Login&#128272</a>';
-        }
-        else
-        {
-            echo '<a href="/auth/login.php">Login&#128272</a>';
-        }
-    }
-    echo "\n";
-    if(!empty($type))
-    {
-        echo '<a href="/auth/signout.php">Signout&#128275</a>';
-        echo "\n";
-    }
-    echo '</div>';
 }
 
 # Return HTML formatted POST form for adding item to cart
 function addToCartButton($productName): string
 {
-    return '<form action="../store/addToCart.php" method="POST">
+    return '<form action="/php/store_functions/addToCart.php" method="POST">
             <input type="hidden" name="productName" value="' .$productName.'">
             <input type="submit" name="submit" value="&#9989">
             </form>';
@@ -90,7 +96,7 @@ function addToCartButton($productName): string
 # Return HTML formatted POST form for removing item from cart
 function removeFromCartButton($productName): string
 {
-    return '<form action="../store/removeFromCart.php" method="POST">
+    return '<form action="/php/store_functions/removeFromCart.php" method="POST">
             <input type="hidden" name="productName" value="' .$productName.'">
             <input type="submit" name="submit" value="&#10060">
             </form>';
@@ -113,7 +119,7 @@ function printProductUpdateForm($productName, $productType)
             if($productType == "cpu")
             {
                 echo "<table class='center'>";
-                echo "<form action='/employee/panel.php' method='POST'>";
+                echo "<form action='/pages/employee-panel.php' method='POST'>";
                 echo '<tr><td><b>Product Name:</b></b></td><td>'.$productRow["productName"].'</td><td><input type="text" name="productNameUpdate"></td></tr>';
                 echo '<tr><td><b>Manufacturer:</b></td><td>'.$productRow["manufacturer"].'</td><td><input type="text" name="manufacturerUpdate"></td></tr>';
                 echo '<tr><td><b>Socket:</b></td><td>'.$productRow["socket"].'</td><td><input type="text" name="socketUpdate"></td></tr>';
@@ -130,7 +136,7 @@ function printProductUpdateForm($productName, $productType)
             else if($productType == "gpu")
             {
                 echo "<table class='center'>";
-                echo "<form action='/employee/panel.php' method='POST'>";
+                echo "<form action='/employee/employee-panel.php' method='POST'>";
                 echo '<tr><td><b>Product Name:</b></td><td>'.$productRow["productName"].'</td><td><input type="text" name="newProductNameUpdate"></td></tr>';
                 echo '<tr><td><b>Manufacturer:</b></td><td>'.$productRow["manufacturer"].'</td><td><input type="text" name="manufacturerUpdate"></td></tr>';
                 echo '<tr><td><b>Core Clock:</b></td><td>'.$productRow["coreClock"].'</td><td><input type="number" name="coreClockUpdate" min="1"></td></tr>';
@@ -146,7 +152,7 @@ function printProductUpdateForm($productName, $productType)
             else if($productType == "psu")
             {
                 echo "<table class='center'>";
-                echo "<form action='/employee/panel.php' method='POST'>";
+                echo "<form action='/pages/employee-panel.php' method='POST'>";
                 echo '<tr><td><b>Product Name:</b></td><td>'.$productRow["productName"].'</td><td><input type="text" name="productNameUpdate"></td></tr>';
                 echo '<tr><td><b>Manufacturer:</b></td><td>'.$productRow["manufacturer"].'</td><td><input type="text" name="manufacturerUpdate"></td></tr>';
                 echo '<tr><td><b>Wattage:</b></td><td>'.$productRow["wattage"].'</td><td><input type="number" name="wattageUpdate" min="1"></td></tr>';
@@ -162,7 +168,7 @@ function printProductUpdateForm($productName, $productType)
             else if($productType == "ram")
             {
                 echo "<table class='center'>";
-                echo "<form action='/employee/panel.php' method='POST'>";
+                echo "<form action='/pages/employee-panel.php' method='POST'>";
                 echo '<tr><td><b>Product Name:</b></td><td>'.$productRow["productName"].'</td><td><input type="text" name="productNameUpdate"></td></tr>';
                 echo '<tr><td><b>Manufacturer:</b></td><td>'.$productRow["manufacturer"].'</td><td><input type="text" name="manufacturerUpdate"></td></tr>';
                 echo '<tr><td><b>Speed:</b></td><td>'.$productRow["speed"].'</td><td><input type="text" name="speedUpdate"></td></tr>';
@@ -179,7 +185,7 @@ function printProductUpdateForm($productName, $productType)
             else if($productType == "motherboard")
             {
                 echo "<table class='center'>";
-                echo "<form action='/employee/panel.php' method='POST'>";
+                echo "<form action='/pages/employee-panel.php' method='POST'>";
                 echo '<tr><td><b>Product Name:</b></td><td>'.$productRow["productName"].'</td><td><input type="text" name="productNameUpdate"></td></tr>';
                 echo '<tr><td><b>Manufacturer:</b></td><td>'.$productRow["manufacturer"].'</td><td><input type="text" name="manufacturerUpdate"></td></tr>';
                 echo '<tr><td><b>Socket:</b></td><td>'.$productRow["socket"].'</td><td><input type="text" name="socketUpdate"></td></tr>';

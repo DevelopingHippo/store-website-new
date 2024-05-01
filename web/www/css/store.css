@@ -1,0 +1,87 @@
+.main-container {
+    grid-area: main;
+    overflow-y: auto;
+    padding: 20px 20px;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.main-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.store {
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 25px;
+    background-color: transparent;
+}
+
+.search {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.searchbar {
+    text-align: center;
+}
+#searchbar {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    color: #888; /* Placeholder text color */
+    font-size: 18px;
+}
+#searchbutton {
+    padding: 10px 20px; /* Add padding for top-bottom and left-right */
+    margin: 5px; /* Add margin around the button */
+    font-size: 18px;
+}
+
+.filter {
+    width: 100%;
+    padding: 10px;
+}
+.filter-list {
+    list-style-type: none;
+}
+
+.filter-item {
+    display: flex;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.results {
+    padding: 10px;
+}
+.results table {
+    text-align: center;
+}
+
+.results th {
+    border: 2px solid grey;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.results td {
+    border: 2px solid grey;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+
+table.center {
+    margin-left: auto;
+    margin-right: auto;
+}

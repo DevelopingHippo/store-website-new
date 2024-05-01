@@ -18,7 +18,7 @@ if(empty($_SESSION["uid"]) || ($_SESSION["type"] != "customer")) # If User is no
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Update</title>
-    <link rel="stylesheet" type="text/css" href="updateStyle.css" />
+    <link rel="stylesheet" type="text/css" href="../customer/updateStyle.css" />
 </head>
 <body>
 

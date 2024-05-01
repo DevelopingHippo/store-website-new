@@ -1,0 +1,15 @@
+.main-container {
+    width: 50%;
+    margin: auto;
+}
+.main h2 {
+    text-align: center;
+}
+.mainBody{
+    display:block;
+    padding: 1px;
+    text-align: justify;
+    align-items: center;
+    justify-content: center;
+}
+

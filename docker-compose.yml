@@ -6,8 +6,8 @@ services:
       context: ./web
       dockerfile: Dockerfile
     ports:
-      - "8000:80"
-      - "8001:443"
+      - "8002:80"
+      - "8003:443"
     volumes:
       - "./web/www/:/var/www/html"
     networks:
