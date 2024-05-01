@@ -169,7 +169,7 @@ else
     echo "NO ITEMS IN CART TO CHECKOUT";
 }
 echo '<br><br>';
-echo '<a href="../store/store.php">Back To Store</a>';
+echo '<a href="store.php">Back To Store</a>';
 ?>
 <div id="footer">
     | Ethan B. | Thad S. | Brad S. | Andrew M. | Ewan B. | SAT3210 Project Site |

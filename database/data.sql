@@ -9,11 +9,11 @@ DELETE FROM cpu;
 DELETE FROM gpu;
 
 # this is for creating employee information
-insert into users VALUES ("admin","Example","Admin","admin@example.com","admin","employee",true);
+insert into users VALUES ("admin","John","Smith","admin@example.com","9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08","admin");
 
 
 # this is for creating customer informatiom
-insert into users VALUES ("exampleUser","Example","User","customer@example.com","examplepassword","customer",false);
+insert into users VALUES ("exampleUser","Example","User","customer@example.com","9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08","customer");
 
 
 # CPU Store Information

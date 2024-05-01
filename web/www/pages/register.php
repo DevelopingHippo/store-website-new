@@ -1,98 +1,71 @@
 <?php
 session_start();
-if (!isset($_SESSION["type"]))
-{
-    $_SESSION["type"] = "";
-}
 ?>
-<html>
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/register.css">
     <title>Register</title>
-    <link rel="stylesheet" type="text/css" href="../css/register.css" />
 </head>
 <body>
+<section>
+    <div class="form-box">
+        <div class="form-value">
+            <form action="/php/auth/register.php" method="POST">
+                <h2>Register</h2>
+                <div class="inputbox">
+                    <ion-icon name="person-outline"></ion-icon>
+                    <input type="text" name="username" required>
+                    <label for="">Username</label>
+                </div>
+                <div class="inputbox">
+                    <ion-icon name="lock-closed-outline"></ion-icon>
+                    <input type="password" name="password1" required>
+                    <label for="">Password</label>
+                </div>
+                <div class="inputbox">
+                    <ion-icon name="lock-closed-outline"></ion-icon>
+                    <input type="password" name="password2" required>
+                    <label for="">Confirm Password</label>
+                </div>
+                <div class="inputbox">
+                    <ion-icon name="mail-outline"></ion-icon>
+                    <input type="email" name="email" required>
+                    <label for="">Email</label>
+                </div>
+                <div class="inputbox">
+                    <ion-icon name="person-circle-outline"></ion-icon>
+                    <input type="text" name="first_name" required>
+                    <label for="">First Name</label>
+                </div>
+                <div class="inputbox">
+                    <ion-icon name="person-circle-outline"></ion-icon>
+                    <input type="text" name="last_name" required>
+                    <label for="">Last Name</label>
+                </div>
+                <button type="submit">Submit</button>
+                <div class="login-redirect">
+                    <p>Already have an account? <a href="/pages/login.php">Login</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
 <?php
-require_once "../php/websiteFunctions.php";
-printTopMenu($_SESSION["type"], "none");
-?>
-<h2 class="center">Customer Registration</h2>
-<form action="/auth/register_post.php" method="POST">
-    <label>
-        <table class="center">
-            <tr>
-                <td>First Name:</td>
-                <td>
-                    <label>
-                        <input type="text" name="firstname">
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <td>Last Name:</td>
-                <td>
-                    <label>
-                        <input type="text" name="lastname">
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <td>Email:</td>
-                <td>
-                   <label>
-                        <input type="text" name="email">
-                   </label>
-                </td>
-            </tr>
-            <tr>
-                <td>Username:</td>
-                <td>
-                    <label>
-                        <input type="text" name="username">
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <td>Password:</td>
-                <td>
-		            <label>
-                        <input type="password" name="password1">
-                   </label>
-                </td>
-            </tr>
-            <tr>
-                <td>Confirm Password:</td>
-                <td>
-                    <label>
-                        <input type="password" name="password2">
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="submit" name="submit" value="Register">
-                </td>
-            </tr>
-        </table>
-</form>
-<?php
-
-# Print out Status Message
-$status = $_GET["status"];
-if($status == "badinput")
-{
-	echo '<span style="color:#DE3737;text-align:center;">Registeration Failed!</span>';
-}
-else if($status == "userexists")
-{
-	echo '<span style="color:#DE3737;text-align:center;">Username already exists!</span>';
+if(isset($_GET["status"])) {
+    $status = $_GET["status"];
+    if ($status == "badpassword") {
+        echo "<script>alert('Bad input!');</script>";
+    } else if ($status == "userexists") {
+        echo "<script>alert('Username already exists!');</script>";
+    } else if ($status == "password_mismatch") {
+        echo "<script>alert('Passwords do not match!');</script>";
+    }
 }
 ?>
-
-<div id="footer">
-    | Ethan B. | Thad S. | Brad S. | Andrew M. | Ewan B. | SAT3210 Project Site |
-</div>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
-

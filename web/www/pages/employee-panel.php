@@ -1,14 +1,10 @@
 <?php
 session_start();
-if (!isset($_SESSION["type"]))
-{
-    $_SESSION["type"] = "";
-}
-if($_SESSION["type"] != 'employee')
-{
-    header("Location: /");
-    exit();
-}
+require_once "../php/websiteFunctions.php";
+require_once "../php/databaseFunctions.php";
+require_once "../php/pageFunctions/employeeFunctions.php";
+require_once "../php/store/statisticFunctions.php";
+checkCustAuth();
 ?>
 
 <html lang="en">
@@ -16,27 +12,16 @@ if($_SESSION["type"] != 'employee')
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Employee</title>
-    <link rel="stylesheet" type="text/css" href="../employee/employeeStyle.css" />
+    <link rel="stylesheet" type="text/css" href="../css/employee.css" />
 </head>
 <body>
 <?php
-# Load Dependencies and print Top Nav Bar
-require_once "../php/websiteFunctions.php";
-require_once "../php/databaseFunctions.php";
-require_once "employeeFunctions.php";
-require_once "statisticFunctions.php";
-printTopMenu($_SESSION["type"], "Profile");
-
-$username = $_SESSION["uid"];
+$username = $_SESSION["username"];
 echo '<h2 style="text-align:left;">Currently Logged in as: ' . $username . '  ';
 
-if(!isset($_SESSION))
+if($_SESSION["role"] == "admin")
 {
-    $_SESSION["admin"] = "false";
-}
-if($_SESSION["admin"] == "true")
-{
-    echo '<a href="../pages/admin-employee-panel.php">Admin Panel</a>';
+    echo '<a href="/pages/admin-panel.php">Admin Panel</a>';
 }
 echo "</h2>";
 ?>

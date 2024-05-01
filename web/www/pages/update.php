@@ -1,16 +1,8 @@
 <?php
 session_start();
-if (!isset($_SESSION["type"]))
-{
-    $_SESSION["type"] = "";
-}
-
-if(empty($_SESSION["uid"]) || ($_SESSION["type"] != "customer")) # If User is not a Customer
-{
-    # Redirect to Login page
-    header("location: /auth/login.php");
-    exit();
-}
+require_once "../php/databaseFunctions.php";
+require_once "../php/websiteFunctions.php";
+checkCustAuth();
 ?>
 
 <html lang="utf-8">
@@ -18,28 +10,24 @@ if(empty($_SESSION["uid"]) || ($_SESSION["type"] != "customer")) # If User is no
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Update</title>
-    <link rel="stylesheet" type="text/css" href="../customer/updateStyle.css" />
+    <link rel="stylesheet" type="text/css" href="/css/updateStyle.css" />
 </head>
 <body>
 
 <?php
-# Load Dependencies and Print Top Nav Bar
-require_once "../php/databaseFunctions.php";
-require_once "../php/websiteFunctions.php";
-printTopMenu($_SESSION["type"], "none");
-
 # Get Customer Information
-$username = $_SESSION["uid"];
+$username = $_SESSION["username"];
 $sql = "SELECT username,firstname,lastname,email FROM users WHERE username='" . $username . "';";
 $result = queryDatabase($sql);
-$row = $result->fetch_assoc();
-$firstname = $row["firstname"];
-$lastname = $row["lastname"];
-$email = $row["email"];
+if($result){
+    $firstname = $result["firstname"];
+    $lastname = $result["lastname"];
+    $email = $result["email"];
+}
 ?>
 
 <h4>Update Customer Information</h4>
-<form action="/customer/update_post.php" method="POST">
+<form action="/php/customer/update.php" method="POST">
     <label>
         <table>
             <tr>
@@ -114,11 +102,16 @@ $email = $row["email"];
 </form>
 
 <?php # Print Status Message
-$status = $_GET["status"];
-if($status == "badinput")
-{
-    echo '<span style="color:#DE3737;text-align:center;">Update Failed!</span>';
+
+if(isset($_GET["status"])){
+    $status = $_GET["status"];
+    if($status == "badinput")
+    {
+        echo '<span style="color:#DE3737;text-align:center;">Update Failed!</span>';
+    }
 }
+
+
 ?>
 
 <div id="footer">

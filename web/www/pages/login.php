@@ -1,70 +1,51 @@
 <?php
 session_start();
-if (!isset($_SESSION["type"]))
-{
-    $_SESSION["type"] = "";
-}
 ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/login.css">
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="../css/login.css"/>
 </head>
 <body>
+<section>
+    <div class="form-box">
+        <div class="form-value">
+            <form action="/php/auth/login.php" method="POST">
+                <h2>Overseer</h2>
+                <div class="inputbox">
+                    <ion-icon name="person-outline"></ion-icon>
+                    <input type="text" name="username" required>
+                    <label for="">Username</label>
+                </div>
+                <div class="inputbox">
+                    <ion-icon name="lock-closed-outline"></ion-icon>
+                    <input type="password" name="password" required>
+                    <label for="">Password</label>
+                </div>
+                <button type="submit">Log In</button>
+                <div class="register-redirect">
+                    <p>Don't have an account? <a href="/pages/register.php">Register</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
 <?php
-# Load Required Dependencies and print Top Nav Bar
-require_once "../php/websiteFunctions.php";
-printTopMenu($_SESSION["type"], "Login");
-?>
-<div id="login">
-<h4>Login</h4>
-<form action="/auth/loginAuth.php" method="POST">
-    <label>
-        <table class="center">
-            <tr>
-                <td>Username:</td>
-                <td>
-                    <label>
-                        <input type="text" name="username">
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <td>Password:</td>
-                <td>
-                    <label>
-                        <input type="password" name="password">
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="/auth/register.php">Register</a>
-                </td>
-                <td>
-                    <input type="submit" name="submit" value="Login">
-                </td>
-            </tr>
-        </table>
-</form>
-<?php
-# Print out Status Message
-if (!isset($_GET["status"]))
-{
-    $_GET["status"] = "";
-}
-$loginStatus = $_GET["status"];
-if($loginStatus == "loginfail")
-{
-    echo '<span style="color:#DE3737;text-align:center;">Login Failed!</span>';
+if(isset($_GET["status"])) {
+    $status = $_GET["status"];
+    if($status == "loginfail")
+    {
+        echo "<script>alert('Failed Login!');</script>";
+    }
+    else if($status == "missinginput"){
+        echo "<script>alert('Missing Input!');</script>";
+    }
 }
 ?>
-</div>
 
-<div id="footer">
-    | Ethan B. | Thad S. | Brad S. | Andrew M. | Ewan B. | SAT3210 Project Site |
-</div>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

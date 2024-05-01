@@ -15,9 +15,8 @@ create table users (
     firstname VARCHAR(30),
     lastname VARCHAR(30),
     email VARCHAR(40),
-    password VARCHAR(40) NOT NULL,
-    type VARCHAR(30),
-    admin boolean,
+    password VARCHAR(64) NOT NULL,
+    role VARCHAR(30) NOT NULL,
     primary key (username)
 );
 

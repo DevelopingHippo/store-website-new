@@ -1,15 +1,9 @@
 <?php
+require_once "../php/websiteFunctions.php";
+require_once "../php/databaseFunctions.php";
+require_once "../php/pageFunctions/adminFunctions.php";
 session_start();
-if (!isset($_SESSION["type"]))
-{
-    $_SESSION["type"] = "";
-}
-# Check if User is an Admin
-if($_SESSION["admin"] != "true")
-{
-    header("Location: /");
-    exit();
-}
+checkAdminAuth();
 ?>
 
 <html lang="en">
@@ -17,17 +11,9 @@ if($_SESSION["admin"] != "true")
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin</title>
-    <link rel="stylesheet" type="text/css" href="../css/adminStyle.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/admin.css"/>
 </head>
 <body>
-
-<?php
-# Load Dependencies and Top Menu Nav Bar
-require_once "../php/websiteFunctions.php";
-require_once "../php/databaseFunctions.php";
-require_once "adminFunctions.php";
-printTopMenu($_SESSION["type"], "none");
-?>
 
 <div class="wrapper">
     <div class="employeePanel">
@@ -48,11 +34,6 @@ printTopMenu($_SESSION["type"], "none");
         printAdminSQLPrompt();
         ?>
     </div>
-</div>
-
-
-<div id="footer">
-    | Ethan B. | Thad S. | Brad S. | Andrew M. | Ewan B. | SAT3210 Project Site |
 </div>
 </body>
 </html>
